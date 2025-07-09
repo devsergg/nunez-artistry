@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&family=Dancing+Script:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-primary-background text-primary-paragraphs transition-colors duration-300;
+    font-family: var(--font-lato);
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-spectral);
+    @apply text-primary-headings;
+  }
+}
+
+@layer components {
+  .container {
+    @apply px-4 mx-auto max-w-7xl;
+  }
+  
+  .section {
+    @apply py-16 md:py-24;
+  }
+
+  .btn {
+    @apply px-6 py-3 rounded-md font-medium transition-all duration-300 inline-flex items-center justify-center tracking-wide;
+  }
+
+  .btn-primary {
+    @apply bg-button-background text-button-text hover:bg-button-hover hover:shadow-lg;
+  }
+
+  .btn-outline {
+    @apply border-2 border-button-background text-button-background hover:bg-button-background hover:text-button-text;
+  }
+
+  .heading {
+    @apply font-serif text-primary-headings;
+  }
+
+  .gradient-text {
+    @apply text-transparent bg-clip-text bg-gradient-to-r from-button-background to-primary-headings;
+  }
+}
+
+/* Custom mouse follower */
+.mouse-follower {
+  @apply fixed pointer-events-none z-50 rounded-full opacity-70 transition-transform duration-200 hidden lg:block;
+  background: radial-gradient(circle, rgba(176, 158, 153, 0.5) 0%, rgba(116, 96, 90, 0.3) 100%);
+  width: 30px;
+  height: 30px;
+  margin-left: -15px;
+  margin-top: -15px;
+  transform: scale(1);
+}
+
+.mouse-follower.active {
+  transform: scale(2);
+}
+
+/* Animated background */
+.animated-background {
+  @apply fixed inset-0 z-0 opacity-30;
+}
+
+/* Scroll progress */
+.scroll-progress {
+  @apply fixed top-0 left-0 h-1 z-50 bg-gradient-to-r from-button-background to-primary-headings;
+  width: 0%;
+}
+
+/* Back to top button */
+.back-to-top {
+  @apply fixed bottom-6 right-6 z-20 bg-button-background text-button-text rounded-full p-3 opacity-0 transition-all duration-300 shadow-lg hover:bg-button-hover;
+}
+
+.back-to-top.visible {
+  @apply opacity-100;
+}
+
+/* Portfolio grid */
+.portfolio-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
+} 
