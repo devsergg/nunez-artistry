@@ -21,7 +21,7 @@ export default function ContactSection() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Here you would typically handle form submission to a backend API
-    console.log('Form submitted:', formData);
+    // TODO: Replace with actual API call - DO NOT log sensitive data
     alert('Thanks for your message! We will get back to you soon.');
     setFormData({
       name: '',

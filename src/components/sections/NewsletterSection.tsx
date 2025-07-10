@@ -17,7 +17,7 @@ export default function NewsletterSection() {
     // Simulate form submission
     await new Promise(resolve => setTimeout(resolve, 1000));
     
-    console.log('Form submitted:', formData);
+    // TODO: Replace with actual API call - DO NOT log sensitive data
     setFormData({ firstName: '', email: '' });
     setIsSubmitting(false);
   };
