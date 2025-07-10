@@ -2,7 +2,7 @@ import '../styles/globals.css';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { MouseFollower } from '@/components/MouseFollower';
+
 import { ScrollProgress } from '@/components/ScrollProgress';
 import { BackToTop } from '@/components/BackToTop';
 import { AnimatedBackground } from '@/components/AnimatedBackground';
@@ -27,7 +27,7 @@ const dancingScript = Dancing_Script({
 });
 
 export const metadata = {
-  title: 'Nuñez Artistry | Photography for Culture + Community',
+  title: 'Nuñez Artistry | Be Fierce, Be Confident, Be You',
   description: 'San Francisco-based photographer and makeup artist specializing in cultural events, artistic portraits, and authentic storytelling. Celebrating heritage through vibrant imagery.',
   keywords: 'photography, cultural events, portraits, makeup artistry, San Francisco, Mexican heritage, Día de los Muertos, Carnaval',
 };
@@ -50,7 +50,6 @@ export default function RootLayout({
           enableSystem={false}
         >
           <AnimatedBackground />
-          <MouseFollower />
           <ScrollProgress />
           <Header />
           <main>{children}</main>

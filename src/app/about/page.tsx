@@ -53,14 +53,7 @@ export default function AboutPage() {
           >
             About Cinthya
           </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-xl font-light tracking-wide"
-          >
-            Photography for Culture + Community
-          </motion.p>
+
         </div>
       </section>
 

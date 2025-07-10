@@ -43,7 +43,7 @@ export function Header() {
                   text-sm font-medium tracking-wide transition-colors duration-200
                   ${isScrolled 
                     ? 'text-primary-headings hover:text-button-background' 
-                    : 'text-white hover:text-accent-background'
+                    : 'text-white hover:text-white/80 drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]'
                   }
                   ${activeTab === item.id ? 'border-b-2 border-current' : ''}
                 `}
@@ -56,16 +56,13 @@ export function Header() {
 
           {/* Logo Section */}
           <Link href="/" className="text-center">
-            <div className={`transition-colors duration-200 ${
-              isScrolled ? 'text-primary-headings' : 'text-white'
+            <h1 className={`font-serif text-2xl md:text-3xl font-light tracking-wide transition-colors duration-200 ${
+              isScrolled 
+                ? 'text-primary-headings' 
+                : 'text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]'
             }`}>
-              <h1 className="font-serif text-2xl md:text-3xl font-light tracking-wide">
-                Nuñez Artistry
-              </h1>
-              <p className="text-xs uppercase tracking-widest font-sans font-light">
-                Photography for Culture + Community
-              </p>
-            </div>
+              Nuñez Artistry
+            </h1>
           </Link>
 
           {/* Right Navigation */}
@@ -78,7 +75,7 @@ export function Header() {
                   text-sm font-medium tracking-wide transition-colors duration-200
                   ${isScrolled 
                     ? 'text-primary-headings hover:text-button-background' 
-                    : 'text-white hover:text-accent-background'
+                    : 'text-white hover:text-white/80 drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]'
                   }
                   ${activeTab === item.id ? 'border-b-2 border-current' : ''}
                 `}

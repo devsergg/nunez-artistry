@@ -14,9 +14,6 @@ export function Footer() {
               <h3 className="font-serif text-2xl text-primary-headings font-light mb-2">
                 Nuñez Artistry
               </h3>
-              <p className="text-sm text-primary-paragraphs uppercase tracking-widest font-light">
-                Photography for Culture + Community
-              </p>
             </div>
             
             <p className="text-primary-paragraphs leading-relaxed">

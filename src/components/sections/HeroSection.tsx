@@ -130,10 +130,7 @@ export default function HeroSection() {
         <ChevronRight className="w-6 h-6" />
       </button>
 
-      {/* Slide Counter */}
-      <div className="absolute top-4 left-1/2 transform -translate-x-1/2 text-white text-sm font-light z-20">
-        {String(currentSlide + 1).padStart(2, '0')} / {String(featuredImages.length).padStart(2, '0')}
-      </div>
+
 
       {/* Content Overlay */}
       <div ref={heroRef} className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -143,23 +140,9 @@ export default function HeroSection() {
           transition={{ duration: 1.2, delay: 0.3 }}
           className="space-y-8"
         >
-          <div className="space-y-4">
-            <h1 className="font-serif text-6xl md:text-8xl text-white font-light tracking-wide">
-              Photography
-            </h1>
-            <h2 className="font-serif text-4xl md:text-6xl text-white font-light italic">
-              is Poetry
-            </h2>
-          </div>
-          
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-            className="text-lg md:text-xl text-white font-light tracking-wide max-w-2xl mx-auto"
-          >
-            Capturing the vibrant spirit of culture and community through the lens of artistry
-          </motion.p>
+          <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl text-white font-light tracking-wide">
+            Be Fierce, Be Confident, Be You
+          </h1>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
