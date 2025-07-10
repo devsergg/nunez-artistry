@@ -30,7 +30,7 @@ export default function AboutSection() {
             className="relative h-96 lg:h-[600px]"
           >
             <Image
-              src="/top/CNV...-2441.jpg"
+              src="/About me/camera.jpg"
               alt="Cinthya Nuñez - Professional Photographer"
               fill
               style={{ objectFit: 'cover' }}
@@ -48,7 +48,7 @@ export default function AboutSection() {
           >
             <div className="space-y-6">
               <h3 className="font-serif text-2xl text-primary-headings font-light italic">
-                "Photography is poetry with light"
+                "The girl behind the camera"
               </h3>
               
               <div className="space-y-4 text-primary-paragraphs leading-relaxed">
@@ -68,17 +68,7 @@ export default function AboutSection() {
               </div>
             </div>
 
-            {/* Stats */}
-            <div className="grid grid-cols-2 gap-8 py-8 border-t border-primary-details">
-              <div className="text-center">
-                <div className="text-3xl font-serif text-button-background font-light">7+</div>
-                <div className="text-sm text-primary-paragraphs uppercase tracking-wide">Years Experience</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-serif text-button-background font-light">500+</div>
-                <div className="text-sm text-primary-paragraphs uppercase tracking-wide">Events Captured</div>
-              </div>
-            </div>
+
 
             {/* CTA Button */}
             <motion.div

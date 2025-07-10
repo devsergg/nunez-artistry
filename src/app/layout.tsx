@@ -42,6 +42,7 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <script async src="//www.instagram.com/embed.js"></script>
       </head>
       <body className={`${lato.variable} ${spectral.variable} ${dancingScript.variable} font-sans`}>
         <ThemeProvider

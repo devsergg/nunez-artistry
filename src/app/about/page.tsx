@@ -35,7 +35,7 @@ export default function AboutPage() {
       <section className="relative h-96 md:h-[500px] flex items-center justify-center">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/top/CNV...-2441.jpg"
+            src="/About me/bathtub.jpg"
             alt="Cinthya Nuñez Photography"
             fill
             style={{ objectFit: 'cover' }}
@@ -49,7 +49,8 @@ export default function AboutPage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="font-serif text-5xl md:text-7xl font-light mb-4"
+            className="font-serif text-5xl md:text-7xl font-light mb-4 text-white"
+            style={{ textShadow: '1px 1px 2px rgba(0, 0, 0, 0.5)' }}
           >
             About Cinthya
           </motion.h1>
@@ -95,7 +96,7 @@ export default function AboutPage() {
               </div>
 
               <blockquote className="font-serif text-2xl text-primary-headings font-light italic border-l-4 border-button-background pl-6">
-                "Photography is poetry with light - each image tells a story that words alone cannot capture."
+                "The girl behind the camera - each image tells a story that words alone cannot capture."
               </blockquote>
             </motion.div>
 
@@ -108,7 +109,7 @@ export default function AboutPage() {
             >
               <div className="aspect-[4/5] relative overflow-hidden shadow-lg">
                 <Image
-                  src="/top/H&AF-07205.jpg"
+                  src="/About me/orange dress0797.jpg"
                   alt="Cinthya at work"
                   fill
                   style={{ objectFit: 'cover' }}
@@ -205,11 +206,6 @@ export default function AboutPage() {
               
               <div className="space-y-6 text-primary-paragraphs leading-relaxed">
                 <p>
-                  With over 7 years of experience in cultural and portrait photography, I've had 
-                  the privilege of documenting hundreds of celebrations, from intimate family 
-                  gatherings to large community festivals throughout the Bay Area.
-                </p>
-                <p>
                   My specialization in cultural events stems from my deep understanding of 
                   traditions and customs. I know when to capture the ceremonial moments and 
                   when to step back and observe, always respecting the sacred nature of 
@@ -220,18 +216,11 @@ export default function AboutPage() {
                   professional portrait session, I bring the same level of care, creativity, 
                   and cultural sensitivity to every project.
                 </p>
-              </div>
-
-              {/* Stats */}
-              <div className="grid grid-cols-2 gap-8 py-8 border-t border-primary-details">
-                <div className="text-center">
-                  <div className="text-3xl font-serif text-button-background font-light">500+</div>
-                  <div className="text-sm text-primary-paragraphs uppercase tracking-wide">Events Captured</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-serif text-button-background font-light">7+</div>
-                  <div className="text-sm text-primary-paragraphs uppercase tracking-wide">Years Experience</div>
-                </div>
+                <p>
+                  I've had the privilege of documenting celebrations throughout the Bay Area, 
+                  from intimate family gatherings to large community festivals, always with 
+                  respect for the cultural significance of each moment.
+                </p>
               </div>
             </motion.div>
           </div>
