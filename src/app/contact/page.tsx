@@ -3,7 +3,8 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { Mail, Phone, MapPin, Instagram } from 'lucide-react';
+import { Mail, Phone, MapPin, Instagram, RefreshCw } from 'lucide-react';
+import { useContactPhotos } from '@/hooks/useGoogleDrivePhotos';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -14,6 +15,9 @@ export default function ContactPage() {
     services: [] as string[],
     message: ''
   });
+
+  // Fetch photos from Google Drive
+  const { photos, loading: photosLoading, error: photosError, refetch } = useContactPhotos(8);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -37,18 +41,6 @@ export default function ContactPage() {
     // Handle form submission here
     console.log('Form submitted:', formData);
   };
-
-  // Portfolio images to display
-  const portfolioImages = [
-    '/portfolio/carnival1.jpg',
-    '/portfolio/carnival2.jpg',
-    '/portfolio/carnival3.jpg',
-    '/portfolio/carnival4.jpg',
-    '/portfolio/carnival5.jpg',
-    '/portfolio/carnival6.jpg',
-    '/portfolio/carnival7.jpg',
-    '/portfolio/carnival8.jpg'
-  ];
 
   return (
     <main className="relative">
@@ -300,7 +292,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Instagram Section */}
+      {/* Instagram Section with Google Drive Photos */}
       <section className="py-16 bg-primary-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -314,42 +306,90 @@ export default function ContactPage() {
             </h2>
             <div className="w-24 h-px bg-button-background mx-auto mb-6"></div>
             <p className="text-primary-paragraphs mb-8">
-              See my latest work and behind-the-scenes moments on Instagram
+              See my latest work and behind-the-scenes moments
             </p>
-            <a
-              href="https://www.instagram.com/nunez_artistry"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center bg-button-background text-button-text px-6 py-3 rounded-lg font-medium hover:bg-button-hover transition-colors"
-            >
-              <Instagram className="w-5 h-5 mr-2" />
-              @nunez_artistry
-            </a>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <a
+                href="https://www.instagram.com/nunez_artistry"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center bg-button-background text-button-text px-6 py-3 rounded-lg font-medium hover:bg-button-hover transition-colors"
+              >
+                <Instagram className="w-5 h-5 mr-2" />
+                @nunez_artistry
+              </a>
+              <button
+                onClick={() => refetch()}
+                disabled={photosLoading}
+                className="inline-flex items-center bg-gray-200 text-gray-700 px-6 py-3 rounded-lg font-medium hover:bg-gray-300 transition-colors disabled:opacity-50"
+              >
+                <RefreshCw className={`w-5 h-5 mr-2 ${photosLoading ? 'animate-spin' : ''}`} />
+                Refresh Photos
+              </button>
+            </div>
           </motion.div>
 
-          {/* Portfolio Gallery */}
+          {/* Photo Gallery */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {portfolioImages.map((image, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="aspect-square rounded-lg overflow-hidden relative group cursor-pointer shadow-lg"
-                onClick={() => window.open('https://www.instagram.com/nunez_artistry', '_blank')}
-              >
-                <Image
-                  src={image}
-                  alt={`Portfolio image ${index + 1}`}
-                  fill
-                  style={{ objectFit: 'cover' }}
-                  className="transition-transform duration-300 group-hover:scale-110"
+            {photosLoading ? (
+              // Loading skeleton
+              Array.from({ length: 8 }).map((_, index) => (
+                <div
+                  key={index}
+                  className="aspect-square bg-gray-200 rounded-lg animate-pulse"
                 />
-                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
-                  <Instagram className="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                </div>
-              </motion.div>
-            ))}
+              ))
+            ) : photosError ? (
+              // Error state - show fallback message
+              <div className="col-span-full text-center py-12">
+                <p className="text-primary-paragraphs mb-4">
+                  Unable to load photos from Google Drive
+                </p>
+                <p className="text-primary-details text-sm">
+                  {photosError}
+                </p>
+                <button
+                  onClick={() => refetch()}
+                  className="mt-4 inline-flex items-center bg-button-background text-button-text px-4 py-2 rounded-lg font-medium hover:bg-button-hover transition-colors"
+                >
+                  <RefreshCw className="w-4 h-4 mr-2" />
+                  Try Again
+                </button>
+              </div>
+            ) : photos.length > 0 ? (
+              // Display photos from Google Drive
+              photos.map((photo, index) => (
+                <motion.div
+                  key={photo.id}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="aspect-square rounded-lg overflow-hidden relative group cursor-pointer shadow-lg"
+                  onClick={() => window.open('https://www.instagram.com/nunez_artistry', '_blank')}
+                >
+                  <Image
+                    src={photo.thumbnailUrl || photo.url}
+                    alt={photo.name}
+                    fill
+                    style={{ objectFit: 'cover' }}
+                    className="transition-transform duration-300 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+                    <Instagram className="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  </div>
+                </motion.div>
+              ))
+            ) : (
+              // No photos found
+              <div className="col-span-full text-center py-12">
+                <p className="text-primary-paragraphs mb-4">
+                  No photos found in Google Drive
+                </p>
+                <p className="text-primary-details text-sm">
+                  Make sure to configure your Google Drive folder IDs in the environment variables
+                </p>
+              </div>
+            )}
           </div>
 
           <motion.div
@@ -359,7 +399,10 @@ export default function ContactPage() {
             className="text-center mt-8"
           >
             <p className="text-primary-details text-sm">
-              Click any image to visit my Instagram profile
+              {photos.length > 0 
+                ? `Showing ${photos.length} photos from Google Drive • Click any image to visit Instagram`
+                : 'Photos will appear here once Google Drive is configured'
+              }
             </p>
           </motion.div>
         </div>
